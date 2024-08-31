@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link>
+  <title>Admin</title>
+</head>
+<body class="bg-zinc-50 antialiased">
+  <nav id="navbar" class="top-0- right-0 left-0 bg-green-600 h-16">
+  </nav>
+  <main>
+    <section>
+      <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
+        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/images/morrocoy.jpg');">
+          <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
+        </div>
+        <div class="container relative mx-auto">
+          <div class="items-center flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+              <div class="md:pr-12">
+                <h1 class="mb-4 text-4xl font-extrabold font-serif tracking-tight leading-none text-white md:text-4xl lg:text-6xl">Bienvenido admin</h1>
+                <p class="mb-8 text-lg font-normal font-serif text-white lg:text-2xl sm:px-16 lg:px-4">Aquí podrás consultar, agregar, editar y eliminar los paquetes turisticos</p>
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+        style="height: 70px;">
+          <svg class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0">
+          </svg>
+        </div>
+      </div>
+      <section id="service-container" class="text-white md:flex md:flex-col md:justify-center p-6">
+        <div class="md:flex md:justify-center md:flex-row md:space-x-6">
+          <form id="service-form" class="md:w-1/2 p-2 mt-2 mb-6">
+            <h1 class="font-extrabold md:text-4xl p-2 mr-28 text-blue-600 text-center flex">Crear paquetes</h1>
+            <div class="relative">
+              <input type="text" id="service-name" name="service-name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-blue-400 rounded-lg border-1 border-blue-600 appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder=" ">
+              <label for="service-name" class="absolute text-sm text-black-300  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-green-600  px-2 peer-focus:px-2 peer-focus:text-black-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nombre del paquete</label>
+            </div> <br>
+            <div class="relative">
+              <textarea id="service-description" name="service-description" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-blue-400 rounded-lg border-1 border-blue-600 appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder=" "></textarea>
+              <label for="service-description" class="absolute text-sm text-black-300  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-green-600  px-2 peer-focus:px-2 peer-focus:text-black-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Descripción del paquete</label>
+            </div> <br>
+            <div class="relative">
+              <label for="service-price" class="absolute text-sm text-black-300  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-green-600 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-black-400 eer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Precio</label><br>
+              <input type="number" id="service-price" name="price" step="0.01" value="0.00" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-blue-400 rounded-lg border-1 border-blue-600 appearance-none focus:outline-none focus:ring-0 focus:border-black peer" placeholder=" " />
+              </div><br>
+              <br>
+              <button id="submit-button" disabled class="p-4 px-2 py-2 w-full flex justify-center items-center bg-blue-600 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Crear paquete</button>
+              <br>
+              <p class="text-sm text-red-500 font-bold relative" id="errorText"></p>
+          </form>
+          <ul id="list-service" class="md:w-2/5">
+            <h1 class="font-extrabold md:text-4xl p-2 mr-28 text-blue-600 text-center flex">Paquetes creados</h1>
+          </ul>
+        </div>
+      </section>
+        <div class="p-2">
+        <h1 id="titulo-citas" class="font-extrabold md:text-4xl mr-28 text-black text-center">Paquetes agendados</h1> <br>
+          <div id="citas-container" class="md:mx-0 text-black md:w-full p-4 md:gap-4 md:flex md:flex-wrap">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/Components/nav.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

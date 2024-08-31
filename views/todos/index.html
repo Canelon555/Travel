@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <title>Paquetes</title>
+</head>
+<body class="bg-zinc-50 antialiased w-full">
+  <nav id="navbar" class="top-0 start-0 shadow-xl w-full bg-green-600 h-16">
+  </nav>
+  </section>
+  <main class="relative w-full">
+    <div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen bg-cover bg-center"
+        style="background-image: url('/images/Roraima.jpg');">
+        <div class="absolute top-0 w-full h-full bg-black opacity-50"></div>
+        <div class="container relative mx-auto text-center">
+          <h1 class="mb-4 text-4xl font-extrabold font-serif tracking-tight leading-none text-white md:text-4xl lg:text-6xl">Travel</h1>
+          <p class="mb-8 text-lg font-normal font-serif text-white lg:text-2xl sm:px-16 lg:px-4">Tu aventura comienza aquí y ahora</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 mt-8 mb-8">
+        <h2 class="mb-4 text-4xl font-extrabold font-serif tracking-tight leading-none text-black md:text-4xl lg:text-6xl text-center">Reservar Paquete</h2>
+        <h3 class="mb-8 text-lg font-normal font-serif text-black lg:text-2xl sm:px-16 lg:px-4 text-center">Pulsa el boton "(+)" para seleccionar el paquete de tu preferencia</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div id="list-service" class="bg-green-600 rounded-lg p-6">
+                <!-- Contenido de la lista de servicios -->
+            </div>
+            <div class="bg-green-600 rounded-lg p-6">
+              <div id="cart" class="border h-full md:h-5/6 bg-blue-400 border-black text-black shadow-md rounded-lg p-4">
+                <div class="flex items-center">
+                    <h2 class="font-serif font-bold">Travel</h2>
+                </div>
+                <ul id="cart-items" class="divide-y divide-black p-4">
+                
+                </ul>
+                <div class="mt-4 text-right font-serif font-semibold">
+                    Total: $<span id="total-price-value">0</span>
+                </div>
+                <div class="mt-4 text-right">
+                    <button id="accept-btn" class="bg-black cursor-pointer transition ease-in-out hover:bg-zinc-600 text-white font-bold px-4 py-2 rounded-md">Aceptar</button>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+   
+</main> 
+<div data-aos="fade-down"></div>
+<div class="bg-green-600 antialiased p-2 hidden w-full view">
+ 
+  <main class="w-full">
+      <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden" style="height: 70px;">
+          <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+          </svg>
+      </div>
+
+      <div class="flex text-black p-4 justify-center">
+          <div class="p1p-3h JdSgbh text-sm md:text-xl">
+              <span class="mb-4 text-4xl font-extrabold font-serif tracking-tight leading-none text-white md:text-4xl lg:text-6xl">Seleccionar fecha</span>
+          </div>
+          <div class="wwqUEh ibycah">
+              <span class="Ftg-Wh JdSgbh">
+              </span>
+          </div>
+      </div>
+
+      <section class="flex flex-wrap">
+        <div class="flex py-2 px-2 p-8 flex-col w-full md:w-1/2 lg:w-2/3 xl:w-1/2">
+            <span id="date" class="text-white font-extrabold md:text-4xl p-6 py-4"></span>
+            <ul class="list-none md:ml-16">
+              <div class="carousel-container sm:flex">
+                <button id="prevBtn" class="carousel-btn md:h-8 md:bg-blue-600 hover:bg-blue-400 transition ease-in-out cursor-pointer rounded-lg p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                      </svg>
+                </button>
+                <div id="date-btn" class="carousel-dates flex">
+                  <!-- Aquí se mostrarán las fechas -->
+                </div>
+                <button id="nextBtn" class="carousel-btn md:h-8 md:bg-blue-600 transition ease-in-out hover:bg-blue-400 cursor-pointer rounded-lg p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>
+                </button>
+              </div>
+            </ul>
+            <ul id="payment-list" class=" w-full md:w-full flex flex-col space-y-4 p-4">
+                <!-- Los pagos generados se insertarán aquí -->
+            </ul>
+        </div>
+        <div class="w-full md:w-2/5 lg:w-1/3 xl:w-2/5 md:mt-20 md:ml-24  flex flex-col top-0 justify-center relative h-2/3">
+            <div class="w-full p-6 text-black border border-black rounded-lg bg-blue-400" role="alert">
+                <div class="flex items-center justify-between">
+                    <h2 class="font-serif font-bold">Travel</h2>
+                </div>
+                <div></div>
+                <div class="p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-18 0h18" />
+                    </svg>
+                    <p id="selected-date"></p>
+                </div>
+                <div class="p-2">
+                    <p class="selected-pay"></p>
+                </div>
+                <div class="p-2">
+                    <p class="selected-ref"></p>
+                </div>
+                <div id="selected-services-list" class="w-full p-4"></div>
+                <div class="mt-4 text-right font-extrabold">Total: <span id="total-price-citas">0</span>$</div>
+                <div class="mt-4 text-right p-2 flex flex-col w-full items-center justify-center">
+                    <button id="pay-btn" class="px-4 py-2 w-full bg-black transition ease-in-out text-white rounded hover:bg-stone-600 font-bold flex justify-center">
+                        Pagar
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+                        </svg>
+                    </button>
+                    <div class="p-1"></div>
+                        <button id="pay-office-btn" class="px-4 py-2 w-full text-white transition ease-in-out rounded text-center border border-b border-stone-700 bg-stone-900 hover:bg-stone-800 font-bold flex justify-center">
+                             Paga en efectivo
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                            </svg>
+                        </button>
+                        <div class="mt-4">
+                            <div id="error-modal" class="fixed inset-0 flex justify-center items-center bg-stone-950 bg-opacity-50 hidden">
+                                <div class=" bg-zinc-100 p-4 rounded-lg text-center w-3/4 md:w-2/5">
+                                    <div id="error-message" class="text-red-700 font-bold"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div id="error-modal2" class="fixed inset-0 flex justify-center items-center bg-stone-950 bg-opacity-50 hidden">
+                                <div class=" bg-zinc-100 p-4 rounded-lg text-center w-3/4 md:w-2/5">
+                                    <div id="error-text" class="text-red-700 font-bold"></div>
+                                </div>
+                            </div>
+                        </div>
+            <div class="mt-4">
+                <div id="notificationModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-lg z-50">
+                    <div class="text-center">
+                        <p id="notification" class="text-green-500 font-bold p-2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+  </main> 
+  
+</div>
+
+</div>
+<script type="module" src="index.js"></script>
+  <script src="/components/nav.js"></script>
+</body>
+</html>
